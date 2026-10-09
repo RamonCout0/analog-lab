@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANALOG//LAB — Editor de Analog Horror</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand">ANALOG<span>//</span>LAB <small>analog horror editor</small></div>
+  <div class="group">
+    <button id="bOpen" title="Abrir fotos (ou arraste para a janela)">📂 Abrir fotos</button>
+    <button id="bPaste" title="Ctrl+V cola imagem da área de transferência">📋 Colar</button>
+    <button id="bDemo" title="Gera uma cena de teste sem precisar de foto">🧪 Cena de teste</button>
+  </div>
+  <div class="group">
+    <button id="bUndo" title="Desfazer (Ctrl+Z)">↶</button>
+    <button id="bRedo" title="Refazer (Ctrl+Shift+Z)">↷</button>
+    <button id="bOrig" title="Segure para ver a imagem sem efeitos (tecla \)">👁 Antes/Depois</button>
+  </div>
+  <div class="group">
+    <label class="inl">Quadro
+      <select id="docSize">
+        <option value="1280x720">16:9 · 1280×720</option>
+        <option value="1920x1080">16:9 · 1920×1080</option>
+        <option value="1024x768">4:3 (VHS) · 1024×768</option>
+        <option value="640x480">4:3 · 640×480</option>
+        <option value="1080x1080">1:1 · 1080×1080</option>
+        <option value="1080x1350">4:5 · 1080×1350</option>
+        <option value="1080x1920">9:16 · 1080×1920</option>
+        <option value="1620x1080">3:2 · 1620×1080</option>
+        <option value="custom">Personalizado…</option>
+      </select>
+    </label>
+    <button id="bFit" title="Ajustar zoom (F)">⤢ Ajustar</button>
+    <span id="zoomLbl" class="muted">100%</span>
+  </div>
+  <div class="group">
+    <button id="bAnim" class="toggle" title="Liga ruído/tracking/flicker animados (A)">▶ Animar</button>
+    <button id="bReroll" title="Sorteia um novo padrão de ruído">🎲 Ruído</button>
+  </div>
+  <div class="group right">
+    <button id="bSaveP" title="Salva camadas + efeitos em um arquivo .json">💾 Projeto</button>
+    <button id="bLoadP">📁 Abrir projeto</button>
+    <button id="bCopy">⧉ Copiar</button>
+    <button id="bPNG" class="primary">⬇ PNG</button>
+    <button id="bJPG">⬇ JPG</button>
+    <label class="inl"><select id="recSecs"><option value="3">3s</option><option value="5" selected>5s</option><option value="10">10s</option><option value="20">20s</option></select></label>
+    <button id="bRec" title="Grava o resultado animado em vídeo .webm">⏺ Gravar vídeo</button>
+  </div>
+</header>
+
+<div id="main">
+  <nav id="tools"></nav>
+  <section id="center">
+    <div id="optbar"></div>
+    <div id="stage">
+      <div id="wrap"><canvas id="view"></canvas><canvas id="ov"></canvas></div>
+      <div id="empty">
+        <h2>Solte suas fotos aqui</h2>
+        <p>ou use <b>Abrir fotos</b>, <b>Ctrl+V</b>, ou teste com a <b>Cena de teste</b>.</p>
+      </div>
+    </div>
+    <div id="status"></div>
+  </section>
+  <aside id="side">
+    <div id="tabs">
+      <button data-tab="layers" class="on">Camadas</button>
+      <button data-tab="fx">Efeitos</button>
+      <button data-tab="looks">Looks</button>
+    </div>
+    <div id="tab-layers" class="tab on"></div>
+    <div id="tab-fx" class="tab"></div>
+    <div id="tab-looks" class="tab"></div>
+  </aside>
+</div>
+<input type="file" id="fileImg" accept="image/*" multiple hidden>
+<input type="file" id="fileProj" accept=".json,application/json" hidden>
+<script src="core.js"></script>
+<script src="fx.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
